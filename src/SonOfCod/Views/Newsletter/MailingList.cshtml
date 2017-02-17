@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Newsletter Mailing List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using SonOfCod.Models
+@model List<ApplicationUser>
+
+<h1>Mailing List</h1>
+<hr />
+<ul>
+    @foreach (ApplicationUser user in Model)
+    {
+        <li><strong>Name:</strong> @user.UserName - <strong>Email Address:</strong> <a href="mailto:@user.Email">@user.Email</a></li>
+    }
+</ul>

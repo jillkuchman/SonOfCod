@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using SonOfCod.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace SonOfCod.Controllers
 {
@@ -46,6 +47,16 @@ namespace SonOfCod.Controllers
         public IActionResult AddedToNewsletter()
         {
             return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult MailingList()
+        {
+            List<ApplicationUser> mailingList = _db.MailingList.Include(ml => ml.AppUser)
+                .ToList()
+                .Select(ml => ml.AppUser)
+                .ToList();
+            return View(mailingList);
         }
     }
 }

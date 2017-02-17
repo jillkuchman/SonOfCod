@@ -8,16 +8,19 @@
 {
     <h1>Hello @User.Identity.Name!</h1>
     <hr />
-    @using (Html.BeginForm("LogOff", "Account"))
-    {
-        <input type="submit" class="btn blue" value="Log out" />
-    }
+    <div class="account-buttons">
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+            <input type="submit" class="btn blue" value="Log out" />
+        }
+        @Html.ActionLink("View Mailing List", "MailingList", "Newsletter", null, new { @class = "btn blue" })
+    </div>
 }
 else
 {
     <h1>Create an account or login</h1>
     <hr />
-    <div id="login-buttons">
+    <div id="account-buttons">
         @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn blue"})
         @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn blue" })
     </div>
