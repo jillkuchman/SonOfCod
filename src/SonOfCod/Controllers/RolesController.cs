@@ -10,9 +10,11 @@ using SonOfCod.Models;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SonOfCod.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class RolesController : Controller
     {
         private readonly SonOfCodDbContext _db;
