@@ -3,62 +3,72 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage User Roles</h2>
+<h1 class="center">Manage User Roles</h1>
+<hr />
 @Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 <hr />
 
-<h2>Add Role for User</h2>
+<div class="card">
+    @using (Html.BeginForm("AddRoleToUser", "Roles"))
+    {
+    <div class="card-content">
+    <h2>Add Role for User</h2>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm("AddRoleToUser", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <p>
+            <label for="UserName">User Name: </label>
+            @Html.TextBox("UserName", null, new { @id = "UserName" })
+            <label for="RoleName">Role: </label>
+            @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...", new { id = "RoleName" })
 
-    <p>
-        Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
-
-    </p>
-
-    <input type="submit" value="Save" />
-}
-<hr />
-<h3>Get Roles for a User</h3>
-@using (Html.BeginForm("GetRoles", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    <p>
-        Username : @Html.TextBox("UserName")
-        <input type="submit" value="Get Roles for this User" />
-    </p>
-}
-
-@if (ViewBag.RolesForThisUser != null)
-{
-    <div>
-        <h3>Roles for this user </h3>
-        <ol>
-            @foreach (string s in ViewBag.RolesForThisUser)
-            {
-                <li>@s</li>
-            }
-        </ol>
+        </p>
     </div>
-}
+    <div class="card-action">
+        <input type="submit" class="btn green" value="Assign Role" />
+    </div>
+    }
+</div>
 
-<hr />
-<h3>Remove Role from User</h3>
+<div class="card">
+    @using (Html.BeginForm("GetRoles", "Roles"))
+    {
+        <div class="card-content">
+            <h2>Get Roles for a User</h2>
+            @Html.AntiForgeryToken()
+            <label for="UserName">User Name: </label>
+            @Html.TextBox("UserName", null, new { @id = "UserName" })
+            @if (ViewBag.RolesForThisUser != null)
+            {
+                <h3>Roles for this user:</h3>
+                <ul>
+                    @foreach (string role in ViewBag.RolesForThisUser)
+                    {
+                        <li>@role</li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="card-action">
+            <input type="submit" class="btn blue" value="Get Roles for this User" />
+        </div>
+    }
+</div>
 
-@using (Html.BeginForm("RemoveroleFromUser", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <p>
-        Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
-
-    </p>
-
-    <input type="submit" value="Delete this user from Role" />
-}
+<div class="card">
+    @using (Html.BeginForm("RemoveroleFromUser", "Roles"))
+    {
+        <div class="card-content">
+            <h2>Remove Role from User</h2>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <label for="UserName">User Name: </label>
+            @Html.TextBox("UserName", null, new { @id = "UserName" })
+            <label for="RoleName">Role: </label>
+            @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...", new { id = "RoleName" })
+        </div>
+        <div class="card-action">
+            <input type="submit" class="btn red" value="Unassign Role" />
+        </div>
+    }
+</div>

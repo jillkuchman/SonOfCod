@@ -4,19 +4,15 @@
 }
 @model Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole
 
-<h2>Create Role</h2>
+<h1>Create Role</h1>
+<hr />
 @Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 <hr />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
-    <div>
-        Role name
-    </div>
-    <p>
-        @Html.TextBoxFor(model => model.Name)
-    </p>
-    <input type="submit" value="Save" />
+    <label for="name">Role Title</label>
+    @Html.TextBoxFor(model => model.Name, new { @id = "name" })
+    <input class="btn blue" type="submit" value="Save" />
 }

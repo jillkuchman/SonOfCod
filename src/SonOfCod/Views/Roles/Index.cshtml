@@ -4,17 +4,19 @@
 }
 @model IEnumerable<Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole>
 
-<h2>Roles Listing </h2>
-
+<h1>Roles Listing </h1>
+<hr />
 @Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 <hr />
 <div>
-    @foreach (var role in Model)
-    {
-        <p>
-            <strong>@role.Name | </strong>
-            <span onclick="return confirm('Are you sure to delete?')"><a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color:red;">Delete</a></span> |
-            @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
-        </p>
-    }
+    <ul>
+        @foreach (var role in Model)
+        {
+            <li>
+                <strong>@role.Name | </strong>
+                <span onclick="return confirm('Are you sure to delete?')"><a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color:red;">Delete</a></span> |
+                @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
+            </li>
+        }
+    </ul>
 </div>

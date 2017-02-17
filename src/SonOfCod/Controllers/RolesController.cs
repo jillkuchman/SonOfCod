@@ -87,6 +87,23 @@ namespace SonOfCod.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<ActionResult> GetRoles(string UserName)
+        {
+            if (!string.IsNullOrWhiteSpace(UserName))
+            {
+                ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                ViewBag.RolesForThisUser = await _userManager.GetRolesAsync(user);
+            }
+            List<SelectListItem> list = _db.Roles.OrderBy(r => r.Name)
+                .ToList()
+                .Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name })
+                .ToList();
+            ViewBag.Roles = list;
+            return View("ManageUserRoles");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveRoleFromUser(string userName, string roleName)
         {
             ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
