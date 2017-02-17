@@ -2,12 +2,40 @@
 
 <html>
 <head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link href="~/css/styles.css" type="text/css" rel="stylesheet" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="~/js/scripts.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
+    <nav class="blue lighten-2">
+        <div class="nav-wrapper">
+            <span class="brand-logo center">@Html.ActionLink("Son of Cod", "Index", "Home")</span>
+            <ul class="right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink($"{User.Identity.Name}'s Account", "Index", "Account")</li>
+
+                }
+                else
+                {
+
+                    <li>@Html.ActionLink("Login", "Index", "Account")</li>
+                }
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
         @RenderBody()
     </div>
+
 </body>
 </html>
