@@ -9,12 +9,12 @@
 <h4>Would you like to sign up for our newsletter?</h4>
 <div class="row">
     <div class="col s12 m6 center">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Signup", "Newsletter", FormMethod.Post))
         {
             <button class="btn green" type="submit">Yes Please</button>
         }
     </div>
     <div class="col s12 m6 center">
-        @Html.ActionLink("Never Mind", "Index", "Newsletter", new { @class = "btn red" })
+        @Html.ActionLink("Never Mind", "Index", "Newsletter", null, new { @class = "btn red" })
     </div>
 </div>
