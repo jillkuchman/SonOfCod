@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = "ManageUserRoles";
+    ViewData["Title"] = "Manage Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Manage User Roles</h2>
@@ -8,7 +9,7 @@
 
 <h2>Add Role for User</h2>
 
-@using (Html.BeginForm("RoleAddToUser", "Roles"))
+@using (Html.BeginForm("AddRoleToUser", "Roles"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -34,7 +35,7 @@
 
 @if (ViewBag.RolesForThisUser != null)
 {
-    <div style="background-color:yellow;">
+    <div>
         <h3>Roles for this user </h3>
         <ol>
             @foreach (string s in ViewBag.RolesForThisUser)
@@ -48,7 +49,7 @@
 <hr />
 <h3>Remove Role from User</h3>
 
-@using (Html.BeginForm("DeleteRoleForUser", "Roles"))
+@using (Html.BeginForm("RemoveroleFromUser", "Roles"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)

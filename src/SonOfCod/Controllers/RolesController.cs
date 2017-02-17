@@ -68,7 +68,6 @@ namespace SonOfCod.Controllers
 
         public IActionResult ManageUserRoles()
         {
-            // prepopulat roles for the view dropdown
             List<SelectListItem> list = _db.Roles.OrderBy(r => r.Name)
                 .ToList()
                 .Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name })
@@ -83,12 +82,7 @@ namespace SonOfCod.Controllers
         {
             ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(userName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             await _userManager.AddToRoleAsync(user, roleName);
-            List<SelectListItem> list = _db.Roles.OrderBy(r => r.Name)
-                .ToList()
-                .Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name })
-                .ToList();
-            ViewBag.Roles = list;
-            return View("ManageUserRoles");
+            return RedirectToAction("ManageUserRoles");
         }
 
         [HttpPost]
@@ -106,12 +100,7 @@ namespace SonOfCod.Controllers
             {
                 ViewBag.ResultMessage = "User is not assigned to selected role.";
             }
-            List<SelectListItem> list = _db.Roles.OrderBy(r => r.Name)
-                .ToList()
-                .Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name })
-                .ToList();
-            ViewBag.Roles = list;
-            return View("ManageUserRoles");
+            return RedirectToAction("ManageUserRoles");
         }
     }
 }
