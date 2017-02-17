@@ -13,15 +13,8 @@ namespace SonOfCod.Controllers
 {
     public class NewsletterController : Controller
     {
-        private readonly SonOfCodDbContext _db;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        public NewsletterController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SonOfCodDbContext db)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _db = db;
-        }
+        private SonOfCodDbContext db = new SonOfCodDbContext();
+
         public IActionResult Index()
         {
             return View();
@@ -39,8 +32,8 @@ namespace SonOfCod.Controllers
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             NewsletterRecipient newRecipient = new NewsletterRecipient() { };
             newRecipient.AppUserId = userId;
-            _db.MailingList.Add(newRecipient);
-            _db.SaveChanges();
+            db.MailingList.Add(newRecipient);
+            db.SaveChanges();
             return RedirectToAction("AddedToNewsletter");
         }
 
@@ -52,7 +45,7 @@ namespace SonOfCod.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult MailingList()
         {
-            List<ApplicationUser> mailingList = _db.MailingList.Include(ml => ml.AppUser)
+            List<ApplicationUser> mailingList = db.MailingList.Include(ml => ml.AppUser)
                 .ToList()
                 .Select(ml => ml.AppUser)
                 .ToList();
