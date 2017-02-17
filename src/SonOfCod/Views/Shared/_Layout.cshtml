@@ -4,12 +4,13 @@
 <head>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link href="~/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script src="~/js/scripts.js"></script>
+    <script type="text/javascript" src="~/Resources/js/scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Resources/css/styles.css" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
@@ -18,14 +19,14 @@
         <div class="nav-wrapper">
             <span class="brand-logo center">@Html.ActionLink("Son of Cod", "Index", "Home")</span>
             <ul class="right">
+                <li>@Html.ActionLink("Newsletter", "Index", "Newsletter")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li>@Html.ActionLink($"{User.Identity.Name}'s Account", "Index", "Account")</li>
-
+                    <li>@Html.ActionLink($"{User.Identity.Name}'s Account", "Index", "Account", null, new { @class = "grey-text text-lighten-3" })</li>
+                    <li>@Html.ActionLink("User Roles", "Index", "Roles", null, new { @class = "grey-text text-lighten-3" })</li>
                 }
                 else
                 {
-
                     <li>@Html.ActionLink("Login", "Index", "Account")</li>
                 }
 
@@ -33,9 +34,31 @@
         </div>
     </nav>
 
-    <div class="container">
+    <main class="container">
         @RenderBody()
-    </div>
+    </main>
 
+    <footer class="page-footer blue lighten-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Son of Cod</h5>
+                </div>
+                <div class="col l4 offset-l2 s12 hide-on-med-and-down">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li>@Html.ActionLink("Newsletter", "Index", "Newsletter")</li>
+                        <li>@Html.ActionLink("Account Settings", "Index", "Account")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Copyright Levi Bibo
+                <a class="grey-text text-lighten-4 right" href="https://www.github.com/levibibo/sonofcod">GitHub</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
