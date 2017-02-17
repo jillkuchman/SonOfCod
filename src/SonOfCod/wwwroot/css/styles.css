@@ -2,8 +2,62 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-  }
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 10px;
+}
+
+#newsletter-card {
+    background-image: url("~/images/newsletter-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#marketting-card {
+    background-image: url("~/images/marketting-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.caption {
+    background-color: rgb(255, 255, 255, 0.4);
+}
+
+.front-card {
+    height: 300px;
+}
+
+.front-card .card-image img {
+    height: 300px;
+    width: 100%;
+}
+
+.front-card .card-image span {
+    position: absolute;
+}
+
+.parallax img {
+    width: 100%;
+}
