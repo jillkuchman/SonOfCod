@@ -58,6 +58,16 @@ h4 {
     position: absolute;
 }
 
+.row img {
+    display: block;
+    height: auto;
+    width: auto;
+}
+
 .parallax img {
     width: 100%;
+}
+
+.footer-links:hover {
+    color: green;
 }

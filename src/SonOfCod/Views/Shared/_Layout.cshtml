@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Compiled and minified CSS -->
@@ -17,9 +17,12 @@
 <body>
     <nav class="blue lighten-2">
         <div class="nav-wrapper">
+            <ul class="left">
+                <li>@Html.ActionLink("About Son of Cod", "Index", "Marketing")</li>
+                <li>@Html.ActionLink("Newsletter", "Index", "Newsletter")</li>
+            </ul>
             <span class="brand-logo center">@Html.ActionLink("Son of Cod", "Index", "Home")</span>
             <ul class="right">
-                <li>@Html.ActionLink("Newsletter", "Index", "Newsletter")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li>@Html.ActionLink($"{User.Identity.Name}'s Account", "Index", "Account", null, new { @class = "grey-text text-lighten-3" })</li>
@@ -51,8 +54,12 @@
                 <div class="col l4 offset-l2 s12 hide-on-med-and-down">
                     <h5 class="white-text">Links</h5>
                     <ul>
-                        <li>@Html.ActionLink("Newsletter", "Index", "Newsletter")</li>
-                        <li>@Html.ActionLink("Account Settings", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Newsletter", "Index", "Newsletter", null, new { @class = "grey-text text-lighten-3 footer-links" })</li>
+                        <li>@Html.ActionLink("About Son of Cod", "Index", "Marketing", null, new { @class = "grey-text text-lighten-3 footer-links" })</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Account Settings", "Index", "Account", null, new { @class = "grey-text text-lighten-3 footer-links" })</li>
+                        }
                     </ul>
                 </div>
             </div>
