@@ -13,6 +13,8 @@ Users can create accounts and use their information to sign up for the company n
 
 Only an administrator can grant administrator privileges or view the current mailing list.  The person deploying the application can use the email/username "Admin" and password "Password" to create new administrators and then remove privileges from the default Admin account.
 
+To view the mailing list as an administrator, log in and navigate to the user account page in the nav bar and then click on the "View Mailing List" button.
+
 ## Setup/Installation Requirements
 
 _Requires Windows, .Net core, SQL SERVER_
