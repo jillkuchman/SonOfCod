@@ -71,3 +71,9 @@ h4 {
 .footer-links:hover {
     color: green;
 }
+
+.account-buttons {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
